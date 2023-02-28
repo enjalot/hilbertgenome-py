@@ -190,6 +190,7 @@ class HilbertGenome:
         # and save them in a metadata json file
         min = np.amin(v, axis=0).tolist()
         max = np.amax(v, axis=0).tolist()
+
         meta = {'min': min, 'max': max, 'dtype': dtype, 'width': self.width }
         mfn = self.get_meta_filename(chromosome, order, hstart)
         with open(mfn, 'w') as f:
@@ -217,7 +218,7 @@ class HilbertGenome:
             for p in paths:
                 with open(p, "rb") as rf:
                     of.write(rf.read())
-        print("all done!")
+        print("all done writing", out)
 
     def combine_meta_files(self, files, order):
         paths = [self.get_meta_filename(f['chromosome'], f['order'], f['hstart']) for f in files]
